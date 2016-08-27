@@ -19,13 +19,14 @@ type Notes []Note
 
 // Global variables
 var notes Notes
+var basePath := "files/"
 
 func main() {
 	DEBUG := true
 
 	if DEBUG {
 		notes = Notes{
-			Note{Title: "london", Latitude: 5.498, Longitude: 6.689, Info: "gretest city", Audio: "01.mp3"},
+			Note{Title: "london", Latitude: 5.498, Longitude: 6.689, Info: "greatest city", Audio: "01.mp3"},
 			Note{Title: "paris", Latitude: 48.8567, Longitude: 2.3508, Info: "often called the City of Light.", Audio: "01.mp3"},
 			Note{Title: "rome", Latitude: 41.9, Longitude: 12.5, Info: "has a whole country inside it.", Audio: "01.mp3"}}
 	}
@@ -33,14 +34,14 @@ func main() {
 	http.HandleFunc("/", index)
 	http.HandleFunc("/notes", notesIndex)
 
-	err := http.ListenAndServe(GetPort(), nil)
+	err := http.ListenAndServe(getPort(), nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
 }
 
 // Get the Port from the environment so we can run on Heroku
-func GetPort() string {
+func getPort() string {
 	var port = os.Getenv("PORT")
 	// Set a default port if there is nothing in the environment
 	if port == "" {
@@ -60,4 +61,8 @@ func notesIndex(w http.ResponseWriter, r *http.Request) {
 	if err := json.NewEncoder(w).Encode(notes); err != nil {
 		panic(err)
 	}
+}
+
+func getAudioFile(w http.ResponseWriter, r *http.Request) {
+
 }
