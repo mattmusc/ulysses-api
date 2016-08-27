@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"os"
 )
 
 type Note struct {
@@ -31,7 +32,23 @@ func main() {
 	http.HandleFunc("/", index)
 	http.HandleFunc("/notes", notesIndex)
 
-	http.ListenAndServe(":9000", nil)
+	err := http.ListenAndServe(GetPort(), nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
+}
+
+// Get the Port from the environment so we can run on Heroku
+func GetPort() string {
+	var port = os.Getenv("PORT")
+	// Set a default port if there is nothing in the environment
+	if port == "" {
+		port = "9000"
+		fmt.Println("INFO: No PORT environment variable detected, defaulting to " + port)
+	} else {
+		fmt.Println("INFO: Listening on " + port)
+	}
+	return ":" + port
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
