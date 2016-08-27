@@ -1,0 +1,6 @@
+{
+	"ImportPath": "github.com/mattmusc/go-api",
+	"GoVersion": "go1.6",
+	"GodepVersion": "v74",
+	"Deps": []
+}
