@@ -31,7 +31,7 @@ func main() {
 
 	if DEBUG {
 		notes = Notes{
-			Note{Title: "Spazio Officina", Latitude: 45.837, Longitude: 9.027, City: "Chiasso", Address: "Svizzera, Via D. Alighieri 4, 6830 Chiasso", Audio: "chiasso_01.m4a", Tagger: "Elena"},
+			Note{Title: "Spazio Officina", Latitude: 45.837, Longitude: 9.027, City: "Chiasso", Address: "Svizzera, Via D. Alighieri 4, 6830 Chiasso", Audio: "chiasso_01.mp3", Tagger: "Elena"},
 			Note{Title: "M.A.X. Museo", Latitude: 45.80, Longitude: 9.090, City: "Chiasso", Address: "Svizzera, Via D. Alighieri 6, 6830 Chiasso", Audio: "chiasso_02.m4a", Tagger: "Andrea"}}
 	}
 
