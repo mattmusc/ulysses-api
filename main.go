@@ -3,8 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/gorilla/mux"
 	"log"
 	"net/http"
+	//"net/url"
 	"os"
 )
 
@@ -19,9 +21,10 @@ type Notes []Note
 
 // Global variables
 var notes Notes
-var basePath := "files/"
+var basePath string
 
 func main() {
+	basePath = "files/"
 	DEBUG := true
 
 	if DEBUG {
@@ -31,8 +34,13 @@ func main() {
 			Note{Title: "rome", Latitude: 41.9, Longitude: 12.5, Info: "has a whole country inside it.", Audio: "01.mp3"}}
 	}
 
-	http.HandleFunc("/", index)
-	http.HandleFunc("/notes", notesIndex)
+	r := mux.NewRouter()
+
+	r.HandleFunc("/", index)
+	r.HandleFunc("/notes", notesIndex)
+	r.HandleFunc("/audio/{filename:[a-z]+[_][0-9]+[.](mp4|m4a)}", getAudioFile)
+
+	http.Handle("/", r)
 
 	err := http.ListenAndServe(getPort(), nil)
 	if err != nil {
@@ -64,5 +72,8 @@ func notesIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func getAudioFile(w http.ResponseWriter, r *http.Request) {
-
+	vars := mux.Vars(r)
+	filename := vars["filename"]
+	log.Println("Requested: ", filename)
+	http.ServeFile(w, r, filename)
 }
