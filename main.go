@@ -34,7 +34,7 @@ func main() {
 			// Note{Title: "london", Latitude: 5.498, Longitude: 6.689, Info: "greatest city", Audio: "01.mp3"},
 			// Note{Title: "paris", Latitude: 48.8567, Longitude: 2.3508, Info: "often called the City of Light.", Audio: "01.mp3"},
 			// Note{Title: "rome", Latitude: 41.9, Longitude: 12.5, Info: "has a whole country inside it.", Audio: "01.mp3"}}
-			Note{Title: "Spazio Officina", Latitude: 45.837, Longitude: 9.027, City: "Chiasso", Address: "Svizzera, Via D. Alighieri 4, 6830 Chiasso" Audio: "chiasso_01.m4a", Tagger: "Elena"}}
+			Note{Title: "Spazio Officina", Latitude: 45.837, Longitude: 9.027, City: "Chiasso", Address: "Svizzera, Via D. Alighieri 4, 6830 Chiasso", Audio: "chiasso_01.m4a", Tagger: "Elena"}}
 	}
 
 	r := mux.NewRouter()
